@@ -1,9 +1,13 @@
 const http = require('http')
-const msg = require('./message')
+const msg = require('./message.js')
+const {loadUser} = require('./user-module.js')
 const host = "localhost"
-PORT = 5000
+const PORT = process.env.PORT || 5000
+
 const server = http.createServer((req,res)=>{
-    res.writeHead(200,{"Content-Type":"text/pain"})
+    const jsonContent = JSON.stringify(loadUser())
+
+    res.writeHead(200 ,{"Content-Type":"text/pain"})
     res.write('-Hello-')
     res.write(`${msg.message} I HERE TOO`)
     res.end()
